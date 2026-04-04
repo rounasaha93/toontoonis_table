@@ -130,7 +130,7 @@ nav.scrolled {
   opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
 }
 .hero-title .line1 { display: block; }
-.hero-title .line2 { display: block; font-style: italic; color: var(--indigo); }
+.hero-title .line2 { display: block; font-style: normal; color: var(--indigo); }
 
 .hero-desc {
   font-size: 1rem; line-height: 1.8; color: rgba(26,16,0,0.65);
@@ -209,7 +209,7 @@ h2.title {
   line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.4rem;
   color: var(--ink);
 }
-h2.title em { font-style: italic; color: var(--indigo); }
+h2.title em { font-style: normal; color: var(--indigo); }
 h2.title.title--dark { color: var(--ink); }
 h2.title.title--dark em { color: var(--indigo); }
 
@@ -257,6 +257,37 @@ h2.title.title--dark em { color: var(--indigo); }
 }
 .video-wrapper iframe { width: 100%; height: 100%; border: none; display: block; }
 
+/* YouTube thumbnail fallback (when embedding is disabled) */
+.yt-thumb {
+  position: relative; aspect-ratio: 16/9;
+  border-radius: 3px; overflow: hidden;
+  display: block; text-decoration: none;
+  background: var(--ink);
+}
+.yt-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.yt-thumb-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.8rem;
+  background: rgba(0,0,0,0.35);
+  transition: background 0.2s;
+}
+.yt-thumb:hover .yt-thumb-overlay { background: rgba(0,0,0,0.55); }
+.yt-play-btn {
+  width: 68px; height: 48px; border-radius: 12px;
+  background: #ff0000;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+.yt-thumb:hover .yt-play-btn { transform: scale(1.1); }
+.yt-play-btn svg { margin-left: 4px; }
+.yt-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+}
+
 /* Colour divider bar */
 .color-bar { display: flex; gap: 6px; margin: 2rem 0; }
 .color-bar span { height: 3px; border-radius: 2px; display: block; }
@@ -302,7 +333,7 @@ h3.food-title {
   line-height: 1.1; margin-bottom: 1.2rem;
   letter-spacing: -0.01em; color: var(--ink);
 }
-h3.food-title em { color: var(--indigo); font-style: italic; }
+h3.food-title em { color: var(--indigo); font-style: normal; }
 
 /* ── MEET TOONIKA ── */
 .meet-section { background: var(--red); }
@@ -324,7 +355,7 @@ h3.food-title em { color: var(--indigo); font-style: italic; }
   line-height: 1.0; letter-spacing: -0.02em;
   color: var(--white); margin-bottom: 0.5rem;
 }
-.meet-name em { font-style: italic; color: var(--saffron); }
+.meet-name em { font-style: normal; color: var(--saffron); }
 
 .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.8rem; }
 .pill {
