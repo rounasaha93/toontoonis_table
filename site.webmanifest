@@ -1,0 +1,16 @@
+{
+  "name": "Toontooni's Table",
+  "short_name": "Toontooni's Table",
+  "description": "A modern Bengali supper club in Gurgaon, NCR.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#E6C229",
+  "theme_color": "#6610F2",
+  "icons": [
+    {
+      "src": "/assets/images/logo-black.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
