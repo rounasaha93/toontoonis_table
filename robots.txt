@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toontoonistable.com/sitemap.xml
