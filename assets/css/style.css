@@ -428,10 +428,15 @@ footer {
   display: grid; grid-template-columns: 2fr 1fr 1fr;
   gap: 3rem; margin-bottom: 3rem;
 }
-.footer-logo-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+.footer-logo-row {
+  display: block;
+  margin-bottom: 1rem;
+}
 .footer-logo-row img {
-  height: 56px; width: auto; object-fit: contain;
-  filter: brightness(0) invert(1); /* black logo → white on dark bg */
+  height: 52px; width: auto; object-fit: contain;
+  filter: brightness(0) invert(1);
+  display: block;
+  margin-bottom: 0.75rem;
 }
 .footer-brand {
   font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem;
