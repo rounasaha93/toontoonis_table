@@ -428,19 +428,15 @@ footer {
   display: grid; grid-template-columns: 2fr 1fr 1fr;
   gap: 3rem; margin-bottom: 3rem;
 }
-.footer-logo-row {
-  display: block;
-  margin-bottom: 1rem;
-}
-.footer-logo-row img {
-  height: 52px; width: auto; object-fit: contain;
-  filter: brightness(0) invert(1);
-  display: block;
-  margin-bottom: 0.75rem;
-}
+.footer-logo-row { margin-bottom: 1rem; }
 .footer-brand {
+  display: flex; align-items: center; gap: 0.5rem;
   font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem;
   color: var(--white);
+}
+.footer-brand img {
+  height: 40px; width: auto; object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 .footer-brand span { color: var(--saffron); }
 .footer-tagline { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.4); }
