@@ -43,7 +43,7 @@ nav.scrolled {
   display: flex; align-items: center; gap: 0.7rem;
   text-decoration: none; z-index: 201;
 }
-.nav-logo img { width: 40px; height: 40px; object-fit: contain; }
+.nav-logo img { height: 56px; width: auto; object-fit: contain; }
 .nav-logo-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900; font-size: 1rem; line-height: 1.2;
