@@ -430,7 +430,7 @@ footer {
 }
 .footer-logo-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
 .footer-logo-row img {
-  width: 36px; height: 36px; object-fit: contain;
+  height: 56px; width: auto; object-fit: contain;
   filter: brightness(0) invert(1); /* black logo → white on dark bg */
 }
 .footer-brand {
