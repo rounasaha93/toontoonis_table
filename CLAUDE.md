@@ -72,7 +72,7 @@ Montserrat (headings, labels, nav) + Nunito (body) via Google Fonts.
   the index Event Highlights use the same files.
 - Every page carries full SEO/GEO meta: canonical, Open Graph, Twitter card, `geo.*` tags, and
   JSON-LD (FoodEstablishment on home; Article + BreadcrumbList on event pages; Service + Breadcrumb
-  on services). Canonical host is `toontoonistable.com` — keep new URLs on that host.
+  on services). Canonical host is `toonikaguha.com` — keep new URLs on that host.
 - Bust caches by bumping the `?v=N` query on the `style.css` / `main.js` links across all pages.
 
 ---
