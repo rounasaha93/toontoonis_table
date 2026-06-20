@@ -657,18 +657,20 @@ footer {
 .logo-chip {
   flex: 0 0 auto;
   display: flex; align-items: center; justify-content: center;
-  height: 96px; min-width: 168px;
+  height: 96px;
   margin-right: 1.5rem;
-  padding: 0 2rem;
+  padding: 0 1.25rem;
   background: var(--white);
   border: 1px solid rgba(26,16,0,0.09);
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(26,16,0,0.05);
 }
+/* Every logo asset is pre-normalised to an identical 480x210 canvas
+   (trimmed + centred). max-width/height keep each one fully inside the chip
+   and, because the ratio is identical, perfectly uniform. */
 .logo-chip img {
-  max-height: 44px; max-width: 240px;
-  width: auto; object-fit: contain; display: block;
-  border-radius: 4px; /* softens logos that carry their own solid-colour background */
+  max-width: 168px; max-height: 70px;
+  width: auto; height: auto; object-fit: contain; display: block;
 }
 
 @keyframes logo-ticker {
