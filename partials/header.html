@@ -1,0 +1,46 @@
+<!-- ════════════════════════════════════════════════════════════
+     SHARED SITE HEADER — single source of truth.
+     Edit here only. Injected into <div id="site-header"> by assets/js/main.js.
+     Links are root-relative (/#...) so the same markup works from the
+     site root (index.html) and from sub-pages (events/*.html).
+════════════════════════════════════════════════════════════ -->
+<nav id="main-nav" aria-label="Main navigation">
+  <a href="/#home" class="nav-logo" aria-label="Toontooni's Table – home">
+    <img src="/assets/images/logo-black.png" alt="Toontooni's Table logo" height="48">
+    <div class="nav-logo-text">Toontooni's<br><span>Table</span></div>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="/#supper-club">Supper Club</a></li>
+    <li><a href="/#events">Events</a></li>
+    <li><a href="/#press">Press</a></li>
+    <li><a href="/#meet">Host</a></li>
+    <li><a href="/#team">About Us</a></li>
+    <li><a href="https://www.instagram.com/toontooniguha/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+
+  <button
+    class="hamburger"
+    id="hamburger"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE NAV OVERLAY ── -->
+<nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+  <a href="/#home">Home</a>
+  <a href="/#supper-club">Supper Club</a>
+  <a href="/#events">Events</a>
+  <a href="/#press">Press</a>
+  <a href="/#meet">Host</a>
+  <a href="/#team">About Us</a>
+  <a href="https://www.instagram.com/toontooniguha/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <a href="/#contact">Contact</a>
+</nav>
