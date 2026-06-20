@@ -62,6 +62,35 @@ function initReveal() {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 }
 
+// ── PARTNER LOGO TICKER ──
+// The CSS marquee translates the track by -50%, so the logo set must appear
+// twice. Clone it once at runtime (keeps the HTML to a single set). Skipped
+// when the user prefers reduced motion (the CSS falls back to a static wrap).
+function initTicker() {
+  const ticker = document.querySelector('.logo-ticker');
+  const track = ticker && ticker.querySelector('.logo-track');
+  if (!ticker || !track) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Duplicate the logo set once for a seamless -50% loop.
+  track.querySelectorAll('.logo-chip').forEach(chip => {
+    const clone = chip.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+
+  // Start the scroll the moment the section reaches the viewport.
+  const start = () => ticker.classList.add('in-view');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { start(); io.disconnect(); }
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    io.observe(ticker);
+  } else {
+    start(); // no IO support → just run it
+  }
+}
+
 // ── SMOOTH SCROLL FOR IN-PAGE ANCHOR LINKS ──
 // Handles both plain "#id" links and root-relative "/#id" nav links. A link is
 // smooth-scrolled only when it targets a hash on the *current* page; otherwise
@@ -91,5 +120,6 @@ function initSmoothScroll() {
   ]);
   initNav();
   initReveal();
+  initTicker();
   initSmoothScroll();
 })();
