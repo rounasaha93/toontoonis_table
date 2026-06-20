@@ -10,14 +10,14 @@ Local dev: `python3 -m http.server 3000` from the project root.
 
 ```
 index.html              — single-page main site
-assets/css/style.css    — all styles for index.html
-assets/js/main.js       — scroll/nav JS
-assets/images/          — logo-black.png, logo-white.svg, food-1.jpg, kitchen.jpg, portrait.jpg
-events/
-  event-1.html          — An Evening of Mustard & Maach (20 Apr 2026)
-  event-2.html          — The Green Season Table (11 May 2026)
-  event-3.html          — Monsoon Mela (8 Jun 2026)
-  event.css             — shared stylesheet for all event pages
+services.html           — "Our Services" sub-page (linked from the About Us section)
+partials/header.html    — SHARED nav (desktop + mobile) — single source of truth
+partials/footer.html    — SHARED footer — single source of truth
+assets/css/style.css    — all styles
+assets/js/main.js       — injects partials, then wires nav / reveal / smooth-scroll
+assets/images/          — logo-black.png, logo-white.svg,
+                          experience-1..3.jpg (Supper Club), host.jpg (Meet the Host),
+                          food-plating.jpg (Beyond the Table)
 sitemap.xml
 robots.txt
 site.webmanifest
@@ -33,10 +33,10 @@ CLAUDE.md               — this file
 | Hero | `#home` | saffron |
 | Statement band | — | indigo |
 | Supper Club | `#supper-club` | white/saffron |
-| Upcoming Events | `#events` | inside Supper Club |
+| Upcoming Events (IG / mailing-list note) | `#events` | inside Supper Club |
 | Press & Recognition | `#press` | `#0f0a1e` near-black |
-| Meet Toonika | `#meet` | red |
-| Team | `#team` | saffron |
+| Meet the Host (nav: "Host") | `#meet` | red |
+| More About Us (nav: "About Us"; 3 cards — Meet the Team / Our Services / Logo Story) | `#team` | saffron |
 | Beyond the Table | `#beyond` | orange |
 | Footer / Contact | `#contact` | indigo |
 
@@ -60,7 +60,8 @@ Montserrat (headings, labels, nav) + Nunito (body) via Google Fonts.
 - `.d1 / .d2 / .d3` — staggered transition delays
 - `.container` — max-width 1140px, padding 3.5rem sides (1.5rem on mobile)
 - `.section` — padding 6rem 0
-- Event pages use `../` relative paths for assets and links back to index.html
+- The site is currently a single page (`index.html`). The Events section is now just an
+  Instagram / mailing-list note — there are no separate event sub-pages anymore.
 
 ---
 
@@ -74,17 +75,28 @@ Montserrat (headings, labels, nav) + Nunito (body) via Google Fonts.
 ### 1. No breadcrumbs — ever
 Do not add breadcrumbs to any page. They were built twice in different positions and rejected both times. If navigation context is needed, use a simple text link (e.g. "← Back to Events").
 
-### 2. Nav changes touch 4 places
-Whenever a nav item is added, renamed, or removed, update all four locations:
-1. Desktop `<ul class="nav-links">` in `index.html`
-2. Mobile `<nav id="mobile-nav">` in `index.html`
-3. Footer "Navigate" column in `index.html`
-4. Footer "Navigate" column in **each** `events/event-*.html`
+### 2. Nav / footer are now shared partials — edit in ONE place
+Header and footer were previously duplicated across every HTML file. They are now
+single source-of-truth partials, injected at runtime by `assets/js/main.js`:
+- Nav (desktop + mobile): `partials/header.html`
+- Footer: `partials/footer.html`
 
-The site has no shared component system — nav and footer are duplicated per file. Always grep for all instances before finishing.
+Each page just carries the placeholders `<div id="site-header"></div>` and
+`<div id="site-footer"></div>`. To change a nav item or footer link, edit the partial
+only — it propagates everywhere automatically.
+
+Notes:
+- Partial links are root-relative (`/#supper-club`, `/assets/...`) so the same markup
+  works from the root page and from any future sub-page (e.g. a `/foo/` directory).
+  They resolve correctly when served at the domain root or via
+  `python3 -m http.server` started from the project root.
+- Partials are loaded with `fetch()`, so the site must be served over http(s)
+  (the dev server or the live host) — opening a file directly via `file://` will not
+  inject the header/footer.
 
 ### 3. Press section — editorial layout, not card grids
 The Press & Recognition section must feel like a magazine feature. Symmetric 3-column card grids were rejected twice. Use an asymmetric editorial layout: one large featured quote with oversized typographic treatment, supported by smaller secondary items below.
 
-### 4. Footer nav on event pages must match index.html
-Event page footers are independent HTML copies. After any change to the main footer nav, immediately apply the same change to all `events/event-*.html` files.
+### 4. (Obsolete) Footer copies — now a single shared partial
+Footers used to be independent HTML copies per page. They are now one shared file
+(`partials/footer.html`). No need to sync across files anymore — see rule #2.
