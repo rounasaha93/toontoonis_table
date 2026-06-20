@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://toontoonistable.com/sitemap.xml
+Sitemap: https://toonikaguha.com/sitemap.xml
