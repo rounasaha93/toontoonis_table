@@ -9,15 +9,18 @@ Local dev: `python3 -m http.server 3000` from the project root.
 ## File structure
 
 ```
-index.html              — single-page main site
-services.html           — "Our Services" sub-page (linked from the About Us section)
+index.html              — main site (single page)
+services.html           — "Our Services" sub-page (linked from About Us)
+event-prh-grazing-table.html  — Event detail: PRH grazing table
+event-table-of-love.html      — Event detail: Table of Love (Cumin Co.)
+event-nuuk-popup.html         — Event detail: Modern Bengali Table (Nuuk)
 partials/header.html    — SHARED nav (desktop + mobile) — single source of truth
 partials/footer.html    — SHARED footer — single source of truth
 assets/css/style.css    — all styles
-assets/js/main.js       — injects partials, then wires nav / reveal / smooth-scroll
+assets/js/main.js       — injects partials, then wires nav / reveal / smooth-scroll / logo ticker
 assets/images/          — logo-black.png, logo-white.svg,
                           experience-1..3.jpg (Supper Club), host.jpg (Meet the Host),
-                          food-plating.jpg (Beyond the Table)
+                          food-plating.jpg (Beyond the Table), partners/ (25 logos)
 sitemap.xml
 robots.txt
 site.webmanifest
@@ -33,7 +36,7 @@ CLAUDE.md               — this file
 | Hero | `#home` | saffron |
 | Statement band | — | indigo |
 | Supper Club | `#supper-club` | white/saffron |
-| Upcoming Events (IG / mailing-list note) | `#events` | inside Supper Club |
+| Events (`#events`, inside Supper Club): Event Highlights — 3 cards linking to event detail pages — + Upcoming Events (IG / mailing-list note) | `#events` | inside Supper Club |
 | Press & Recognition | `#press` | `#0f0a1e` near-black |
 | Meet the Host (nav: "Host") | `#meet` | red |
 | More About Us (nav: "About Us"; 3 cards — Meet the Team / Our Services / Logo Story) | `#team` | saffron |
@@ -60,8 +63,17 @@ Montserrat (headings, labels, nav) + Nunito (body) via Google Fonts.
 - `.d1 / .d2 / .d3` — staggered transition delays
 - `.container` — max-width 1140px, padding 3.5rem sides (1.5rem on mobile)
 - `.section` — padding 6rem 0
-- The site is currently a single page (`index.html`). The Events section is now just an
-  Instagram / mailing-list note — there are no separate event sub-pages anymore.
+- Sub-pages (`services.html`, `event-*.html`) live at the repo root and reuse the shared
+  header/footer partials. They link back via root-relative anchors (`/#events`, `/#contact`).
+  New event detail pages follow the standard template in any `event-*.html`: collab eyebrow
+  → `.event-title` → `.event-hero-img` (3:2) → writeup with `.event-subhead` headings
+  → `.gallery-grid` of square `<img>` → optional `.event-partner-list`.
+- Event photos live in `assets/images/events/<slug>/NN.jpg` (optimised, ≤1400px). Card images on
+  the index Event Highlights use the same files.
+- Every page carries full SEO/GEO meta: canonical, Open Graph, Twitter card, `geo.*` tags, and
+  JSON-LD (FoodEstablishment on home; Article + BreadcrumbList on event pages; Service + Breadcrumb
+  on services). Canonical host is `toontoonistable.com` — keep new URLs on that host.
+- Bust caches by bumping the `?v=N` query on the `style.css` / `main.js` links across all pages.
 
 ---
 
